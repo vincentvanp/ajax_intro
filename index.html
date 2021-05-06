@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax intro</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <img id="dog">
+
+    <button id="call-dog">Call dog</button>
+
+    <div id="img-data">Called dogs:</div>
+
+    <script>
+
+        function cleanstring(str){
+            str = str.replace("https://images.dog.ceo/breeds/", "");
+            var index = str.indexOf('/');
+            return str = str.replace(str.slice(index), "");
+        }
+
+        var updateDog = function editPic(){
+            $.get('https://dog.ceo/api/breeds/image/random', function (data){
+                $('#dog').attr('src', data.message);
+                $('#img-data').append("<br>" + cleanstring(data.message));
+            });
+        }
+
+        $('#call-dog').on('click', updateDog );
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
